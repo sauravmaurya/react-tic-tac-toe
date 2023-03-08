@@ -6,7 +6,8 @@ function App() {
     const [turn, setTurn] = useState("X")
     const [msg, setMsg] = useState("")
     const [turnArr, setTurnArr] = useState(["", "", "", "", "", "", "", "", ""])
-    const [counter, setCounter] = useState(0)
+    const [counter, setCounter] = useState(0);
+    const [isWon, setIsWon] = useState(false);
     const winArray = [
         [0, 1, 2],
         [3, 4, 5],
@@ -38,6 +39,7 @@ function App() {
                 else {
                     setMsg("X Won")
                 }
+                setIsWon(true)
             }
         }
     }
@@ -68,9 +70,6 @@ function App() {
             }
 
         }
-
-        // checkWinner();
-
     }
 
     const handleReset = () => {
@@ -80,7 +79,6 @@ function App() {
         setTurnArr(["", "", "", "", "", "", "", "", ""])
     }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useMemo(() => {
         checkWinner()
     }, [turnArr])
@@ -88,9 +86,9 @@ function App() {
     let content = msg === "" ? `${turn}'s turn` : msg
 
     return (
-        <div className={(msg === "O Won" || msg === "X Won") ? "wrapper won" : "wrapper"} >
+        <div className="wrapper" >
             <h1>Tic Tac Toe</h1>
-            <BoxList boxes={turnArr} onChange={handleClick}></BoxList>
+            <BoxList won={isWon} boxes={turnArr} onChange={handleClick} msg={msg}></BoxList>
             <div className="message-area">{content}</div>
             <button className="btn-reset" onClick={handleReset}>Reset</button>
         </div>

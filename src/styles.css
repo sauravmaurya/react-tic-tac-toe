@@ -19,7 +19,7 @@ body{
     color: blue;
 }
 
-.box.turn0{
+.box.turno{
     color:red;
 }
 
@@ -31,10 +31,6 @@ body{
     justify-content: center;
 }
 
-.wrapper.won{
-    pointer-events: none;
-}
-
 h1{
     font-size: 3rem;
 }
@@ -44,6 +40,10 @@ h1{
     margin: 40px 0;
     grid-template-columns: repeat(3,100px);
     grid-template-rows: repeat(3,100px);
+}
+
+.boxes.won{
+    pointer-events: none;
 }
 
 .box{
